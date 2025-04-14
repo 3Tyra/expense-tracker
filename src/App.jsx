@@ -1,35 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import ExpenseForm from "./Components/ExpenseForm";
+import ExpenseTable from "./Components/ExpenseTable";
+import SearchBar from "./Components/SearchBar";
+
+import "./index.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [expenses, setExpenses] = useState([
+    {
+      id: 1,
+      name: "Groceries",
+      description: "Weekly groceries",
+      category: "Food",
+      amount: 2500,
+      date: "2025-04-01"
+    },
+    {
+      id: 2,
+      name: "Gas",
+      description: "Car fuel",
+      category: "Transport",
+      amount: 1500,
+      date: "2025-04-02"
+    },
+    {
+      id: 3,
+      name: "Internet",
+      description: "Monthly subscription",
+      category: "Utilities",
+      amount: 3000,
+      date: "2025-04-03"
+    }
+  ]);
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleAddExpense = (newExpense) => {
+    setExpenses([...expenses, newExpense]);
+  };
+
+  const handleDeleteExpense = (idToDelete) => {
+    const updatedExpenses = expenses.filter(exp => exp.id !== idToDelete);
+    setExpenses(updatedExpenses);
+  };
+
+  const filteredExpenses = expenses.filter(exp =>
+    exp.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="container">
+      <h1>Expense Tracker</h1>
+      <p> Simplicity in tracking your money. <br /> Record and view your expenses and purchases easily. </p>
+
+      <div className="main-layout">
+        <div className="left-panel">
+          <h2>Add Expense</h2>
+          <ExpenseForm onAddExpense={handleAddExpense} />
+        </div>
+
+        <div className="right-panel">
+          <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
+          <ExpenseTable expenses={filteredExpenses} onDelete={handleDeleteExpense} />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
