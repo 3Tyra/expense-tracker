@@ -7,30 +7,48 @@ import "./index.css";
 
 function App() {
   const [expenses, setExpenses] = useState([
-    {
-      id: 1,
-      name: "Groceries",
-      description: "Weekly groceries",
-      category: "Food",
-      amount: 2500,
-      date: "2025-04-01"
-    },
-    {
-      id: 2,
-      name: "Gas",
-      description: "Car fuel",
-      category: "Transport",
-      amount: 1500,
-      date: "2025-04-02"
-    },
-    {
-      id: 3,
-      name: "Internet",
-      description: "Monthly subscription",
-      category: "Utilities",
-      amount: 3000,
-      date: "2025-04-03"
-    }
+    
+      {
+        id: 1,
+        name: "Internet",
+        description: "Monthly subscription",
+        category: "Utilities",
+        amount: 3000,
+        date: "2025-04-03"
+      },
+      {
+        id: 2,
+        name: "Electricity",
+        description: "Monthly electricity bill",
+        category: "Utilities",
+        amount: 4200,
+        date: "2025-04-05"
+      },
+      {
+        id: 3,
+        name: "Netflix",
+        description: "Streaming subscription",
+        category: "Entertainment",
+        amount: 1200,
+        date: "2025-04-06"
+      },
+      {
+        id: 4,
+        name: "Lunch",
+        description: "Office lunch",
+        category: "Food",
+        amount: 600,
+        date: "2025-04-07"
+      },
+      {
+        id: 5,
+        name: "Uber",
+        description: "Trip to city center",
+        category: "Transport",
+        amount: 950,
+        date: "2025-04-08"
+      },
+      
   ]);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -50,8 +68,8 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Expense Tracker</h1>
-      <p> Simplicity in tracking your money. <br /> Record and view your expenses and purchases easily. </p>
+      <h1 className="header">Expense Tracker</h1>
+      <p className="paragraph"> Simplicity in tracking your money. <br /> Record and view your expenses and purchases easily. </p>
 
       <div className="main-layout">
         <div className="left-panel">

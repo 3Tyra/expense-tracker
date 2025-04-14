@@ -21,7 +21,7 @@ function ExpenseForm({ onAddExpense }) {
 
     onAddExpense(newExpense);
 
-    // Reset form
+    
     setName("");
     setDescription("");
     setCategory("");
